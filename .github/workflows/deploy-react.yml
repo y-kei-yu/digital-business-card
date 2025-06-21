@@ -2,7 +2,6 @@ name: React App test and build and deploy
 
 on:
   push:
-    branches: [main, master] # 特定のブランチでのみ実行
   workflow_dispatch:
 
 jobs:
@@ -17,10 +16,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run tests
         run: npm test
@@ -37,10 +35,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run Build
         run: npm run build
@@ -50,7 +47,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist
-          retention-days: 1
 
   deploy:
     name: Deploy to Firebase Hosting
@@ -60,6 +56,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -67,8 +71,8 @@ jobs:
           path: dist
 
       - name: Deploy to Firebase Hosting
-        uses: w9jds/firebase-action@master
+        uses: joinflux/firebase-tools@v9.16.0
         with:
-          args: deploy --project=digital-business-card-9b15f --only hosting --force
+          args: deploy --project=digital-business-card-9b15f --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
