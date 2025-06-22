@@ -1,17 +1,16 @@
+import { Route, Routes } from "react-router";
+import { Hello } from "./cards/Hello";
+import { Test } from "./cards/Test";
+import { Hoge } from "./cards/Hoge";
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
-      <p>react app</p>
-      <p>test</p>
-      <p>test2</p>
-      <p>test3</p>
-      <p>test4</p>
-      <p>test5</p>
-      <p>test6</p>
-      <p>test6</p>
-      <p>test6</p>
-      <p>test6</p>
+      <Routes>
+        <Route path={"/cards/hello"} element={<Hello />} />
+        <Route path={"cards/test"} element={<Test />} />
+        <Route path={"cards/hoge"} element={<Hoge />} />
+      </Routes>
     </>
   );
 }
