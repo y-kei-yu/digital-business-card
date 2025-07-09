@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useLocation } from "react-router";
-import { UserCard } from "./components/UserCard";
-import { Test } from "./components/Test";
-import { Hoge } from "./components/Hoge";
+import { UserCard } from "./pages/UserCard";
+import { Test } from "./pages/Test";
+import { Hoge } from "./pages/Hoge";
 
 function App() {
   const location = useLocation();

@@ -1,7 +1,7 @@
 import { User } from "../domain/user";
 import { supabase } from "./supabase";
 
-export async function FetchUser(): Promise<User[]> {
+export async function FetchUser(): Promise<User> {
   const { data, error } = await supabase
     .from("users")
     .select(
@@ -40,18 +40,15 @@ export async function FetchUser(): Promise<User[]> {
       })
       .join(", ") ?? "";
 
-  const userData = [
-    User.createWithLinks(
-      user.user_id,
-      user.name,
-      user.description,
-      skill,
-      user.qiita_id,
-      user.github_id,
-      user.x_id
-    ),
-  ];
+  return User.createWithLinks(
+    user.user_id,
+    user.name,
+    user.description,
+    skill,
+    user.qiita_id,
+    user.github_id,
+    user.x_id
+  );
 
-  console.log("Fetched user data:", userData);
-  return userData;
+  console.log("Fetched user data:", user);
 }
