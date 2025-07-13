@@ -6,10 +6,12 @@ import { useEffect, useState } from "react"
 import { Skill } from "../domain/skill"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { User } from "../domain/user"
+import { useNavigate } from "react-router"
 
 export const RegisterCard = () => {
     const { register, handleSubmit, formState: { errors }, control } = useForm<User>();
     const [skill, setSkill] = useState<Skill[]>([]);
+    const navigate = useNavigate();
 
     //好きな技術のプルダウンを表示させるための関数
     const getAllSkills = async () => {
@@ -21,7 +23,9 @@ export const RegisterCard = () => {
     const onSubmit: SubmitHandler<User> = async (data) => {
         console.log("登録データ:", data);
         await userInsertData(data)
+        navigate("/");
     }
+
 
     useEffect(() => {
         getAllSkills();
