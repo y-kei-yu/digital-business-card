@@ -13,6 +13,7 @@ export const CardWhiteLayout = memo(({ children }: CardWhiteProps) => {
             p={6}
             boxShadow="lg"
             borderRadius="md"
+
         >
             <CardBody>
                 {children}
