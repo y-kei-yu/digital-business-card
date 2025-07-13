@@ -8,8 +8,8 @@ type CardWhiteProps = {
 export const CardWhiteLayout = memo(({ children }: CardWhiteProps) => {
     return (
         <Card
-            w={{ base: '100%', sm: '350px' }} // base:スマホ, sm:タブレット以上
-            maxW="100%" // 画面幅を超えないように制限
+            w={{ base: '100%', sm: '90%', md: '400px' }} // iPhone SE対応＋レスポンシブ
+            maxW="400px" // 画面幅を超えないように制限
             p={6}
             boxShadow="lg"
             borderRadius="md"

@@ -11,10 +11,11 @@ export const BoxBackGroundLayout = memo(({ children }: BoxBackgroundProps) => {
       bg="gray.300"
       w="100%"
       h="100%"
-      position="fixed"
+      position="relative"
       top="0"
       left="0"
-      p={4}
+      px={4}
+      py={2}
       color="black"
     >
       <Flex
