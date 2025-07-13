@@ -12,7 +12,7 @@ function App() {
       {location.pathname === "/" && (
         <nav>
           <ul>
-            <li><Link to="/cards/usercard">UserCard</Link></li>
+            <li><Link to="/cards/usercard:id">UserCard</Link></li>
             <li><Link to="/cards/test">Test</Link></li>
             <li><Link to="/cards/register">RegisterCard</Link></li>
           </ul>
@@ -20,7 +20,7 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/cards/usercard" element={<UserCard />} />
+        <Route path="/cards/usercard/:id" element={<UserCard />} />
         <Route path="/cards/test" element={<Test />} />
         <Route path="/cards/register" element={<RegisterCard />} />
       </Routes>

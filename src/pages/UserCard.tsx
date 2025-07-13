@@ -7,14 +7,16 @@ import { FaGithub } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { Box, Heading, IconButton, Stack, Text } from "@chakra-ui/react";
+import { useParams } from "react-router";
 
 export const UserCard = () => {
+    const { id } = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [user, setUser] = useState<User | null>(null);
 
     //データ取得
-    const FetchUserData = async () => {
-        const userData = await FetchUser();
+    const FetchUserData = async (user_id: string) => {
+        const userData = await FetchUser(user_id);
         console.log("取得したユーザーデータ:", userData);
 
         if (userData) {
@@ -26,10 +28,16 @@ export const UserCard = () => {
         }
 
     }
-
+    //useParamsで取得したidを使ってデータを取得
+    /**
+     * []初回マウント時（画面が最初に表示された時）だけ実行される
+     * [id]idが変わるたびに実行される（最初の一回＋idの変更時）     
+    */
     useEffect(() => {
-        FetchUserData();
-    }, []);
+        if (id) {
+            FetchUserData(id);
+        }
+    }, [id]);
 
 
     if (isLoading) {
