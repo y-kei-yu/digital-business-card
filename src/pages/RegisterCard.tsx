@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, FormLabel, Heading, Input, Select, Textarea } from "@chakra-ui/react"
 import { BoxBackGroundLayout } from "../components/layouts/BoxBackGroundLayout"
 import { CardWhiteLayout } from "../components/layouts/CardWhiteLayout"
-import { GetAllSkills } from "../utils/supabaseFunctions"
+import { GetAllSkills, userInsertData } from "../utils/supabaseFunctions"
 import { useEffect, useState } from "react"
 import { Skill } from "../domain/skill"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
@@ -11,14 +11,16 @@ export const RegisterCard = () => {
     const { register, handleSubmit, formState: { errors }, control } = useForm<User>();
     const [skill, setSkill] = useState<Skill[]>([]);
 
+    //好きな技術のプルダウンを表示させるための関数
     const getAllSkills = async () => {
         const allSkills = await GetAllSkills();
         setSkill(allSkills);
     }
 
+    //登録ボタンクリック時の処理
     const onSubmit: SubmitHandler<User> = async (data) => {
-
         console.log("登録データ:", data);
+        await userInsertData(data)
     }
 
     useEffect(() => {
