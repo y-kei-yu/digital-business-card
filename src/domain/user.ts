@@ -4,9 +4,9 @@ export class User {
     public name: string,
     public description: string,
     public skill: string,
-    public qiita_url: string,
-    public github_url: string,
-    public x_url: string
+    public qiita_id: string,
+    public github_id: string,
+    public x_id: string
   ) {}
 
   //IDだけの生データ」を使って、「URLつきの User オブジェクトを作って返す」関数

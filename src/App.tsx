@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useLocation } from "react-router";
 import { UserCard } from "./pages/UserCard";
 import { Test } from "./pages/Test";
-import { Hoge } from "./pages/Hoge";
+import { RegisterCard } from "./pages/RegisterCard";
 
 function App() {
   const location = useLocation();
@@ -14,7 +14,7 @@ function App() {
           <ul>
             <li><Link to="/cards/usercard">UserCard</Link></li>
             <li><Link to="/cards/test">Test</Link></li>
-            <li><Link to="/cards/hoge">Hoge</Link></li>
+            <li><Link to="/cards/register">RegisterCard</Link></li>
           </ul>
         </nav>
       )}
@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/cards/usercard" element={<UserCard />} />
         <Route path="/cards/test" element={<Test />} />
-        <Route path="/cards/hoge" element={<Hoge />} />
+        <Route path="/cards/register" element={<RegisterCard />} />
       </Routes>
     </>
   );
