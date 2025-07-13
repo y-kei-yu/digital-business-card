@@ -65,7 +65,7 @@ export const UserCard = () => {
                     <Box display="flex" alignItems="center" justifyContent="space-between">
                         <IconButton
                             as="a"
-                            href={user?.qiita_url}
+                            href={user?.qiita_id}
                             aria-label="Qiitaのリンク"
                             icon={<IoNewspaperOutline />}
                             variant="ghost"
@@ -75,7 +75,7 @@ export const UserCard = () => {
 
                         <IconButton
                             as="a"
-                            href={user?.github_url}
+                            href={user?.github_id}
                             aria-label="GitHubのリンク"
                             icon={<FaGithub />}
                             variant="ghost"
@@ -84,7 +84,7 @@ export const UserCard = () => {
                         />
                         <IconButton
                             as="a"
-                            href={user?.x_url}
+                            href={user?.x_id}
                             aria-label="Xのリンク"
                             icon={<FaSquareXTwitter />}
                             variant="ghost"
