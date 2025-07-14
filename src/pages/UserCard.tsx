@@ -56,9 +56,10 @@ export const UserCard = () => {
                         <Heading fontSize={16} fontWeight="bold" textAlign="left">
                             自己紹介
                         </Heading>
-                        <Text fontSize={14} color="gray.600" textAlign="left" mb={4}>
+
+                        <Box className="user-description" color="gray.600" textAlign="left" mb={4}>
                             <div dangerouslySetInnerHTML={{ __html: user?.description ?? "" }}></div>
-                        </Text>
+                        </Box>
                     </Box>
                     <Box>
                         <Heading fontSize={16} fontWeight="bold" textAlign="left" mt={4}>
