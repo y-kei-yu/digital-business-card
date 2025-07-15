@@ -15,8 +15,6 @@ export const TopCard = () => {
     }
 
 
-
-
     return (
         <BoxBackGroundLayout>
             <Box justifyContent="center">
