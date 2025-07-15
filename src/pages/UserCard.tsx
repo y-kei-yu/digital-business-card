@@ -6,11 +6,12 @@ import { CardWhiteLayout } from "../components/layouts/CardWhiteLayout";
 import { FaGithub } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { Box, Heading, IconButton, Stack, Text } from "@chakra-ui/react";
-import { useParams } from "react-router";
+import { Box, Button, Heading, IconButton, Text } from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router";
 
 export const UserCard = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [user, setUser] = useState<User | null>(null);
 
@@ -39,6 +40,11 @@ export const UserCard = () => {
         }
     }, [id]);
 
+    //画面遷移
+    const changePage = () => {
+        navigate("/")
+    }
+
 
     if (isLoading) {
         return <div> Loading...</div>
@@ -46,8 +52,9 @@ export const UserCard = () => {
 
     return (
         <BoxBackGroundLayout>
-            <CardWhiteLayout>
-                <Stack>
+            <Box textAlign="center" justifyContent="center">
+                <CardWhiteLayout>
+
                     <Heading fontSize={24} fontWeight="bold" textAlign="left" mb={2}>
                         {user?.name}
                     </Heading>
@@ -102,8 +109,12 @@ export const UserCard = () => {
 
                         />
                     </Box>
-                </Stack>
-            </CardWhiteLayout>
+
+                </CardWhiteLayout>
+                <Button onClick={changePage} colorScheme="teal" width="full" mr={4} mt={4} mb={3} >
+                    戻る
+                </Button>
+            </Box>
         </BoxBackGroundLayout >
     );
 };
