@@ -10,7 +10,6 @@ export const CardWhiteLayout = memo(({ children }: CardWhiteProps) => {
         <Card
             w={{ base: '100%', sm: '90%', md: '400px' }} // iPhone SE対応＋レスポンシブ
             maxW="400px" // 画面幅を超えないように制限
-            p={6}
             boxShadow="lg"
             borderRadius="md"
 
