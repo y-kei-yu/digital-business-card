@@ -40,15 +40,15 @@ export const RegisterCard = () => {
                 </Heading>
                 <CardWhiteLayout>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <FormControl isRequired>
-                            <FormLabel>好きな英単語 </FormLabel>
+                        <FormControl>
+                            <FormLabel>好きな英単語 <span style={{ color: "red" }}>*</span> </FormLabel>
                             <Input
                                 type="text"
                                 {...register("user_id", {
-                                    required: true,
+                                    required: "好きな英単語は必須です",
                                     pattern: {
-                                        value: /^[a-zA-Z0-9_]+$/,
-                                        message: "英数字とアンダースコアのみ使用できます。"
+                                        value: /^[a-zA-Z]+$/,
+                                        message: "英字のみ使用できます。"
                                     }
                                 })}
                             />
@@ -56,8 +56,8 @@ export const RegisterCard = () => {
                                 <span style={{ color: "red" }}>{errors.user_id.message}</span>
                             )}
                         </FormControl>
-                        <FormControl isRequired mt={5}>
-                            <FormLabel>お名前</FormLabel>
+                        <FormControl mt={5}>
+                            <FormLabel>お名前 <span style={{ color: "red" }}>*</span> </FormLabel>
                             <Input
                                 type="text"
                                 {...register("name", {
@@ -68,8 +68,8 @@ export const RegisterCard = () => {
                                 <span style={{ color: "red" }}>{errors.name.message}</span>
                             )}
                         </FormControl >
-                        <FormControl isRequired mt={5}>
-                            <FormLabel>自己紹介 </FormLabel>
+                        <FormControl mt={5}>
+                            <FormLabel>自己紹介 <span style={{ color: "red" }}>*</span> </FormLabel>
                             <Textarea
                                 {...register("description", {
                                     required: "自己紹介は必須です。",
@@ -85,8 +85,8 @@ export const RegisterCard = () => {
                                 <span style={{ color: "red" }}>{errors.description.message}</span>
                             )}
                         </FormControl >
-                        <FormControl isRequired mt={5}>
-                            <FormLabel>好きな技術</FormLabel>
+                        <FormControl mt={5}>
+                            <FormLabel>好きな技術 <span style={{ color: "red" }}>*</span> </FormLabel>
                             <Controller
                                 name="skill"
                                 control={control}
@@ -134,6 +134,7 @@ export const RegisterCard = () => {
                         <div><span style={{ color: "red" }}>*</span>は必須項目です。</div>
                     </form>
                 </CardWhiteLayout>
+
             </Box>
 
         </BoxBackGroundLayout >
