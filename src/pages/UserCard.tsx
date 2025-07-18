@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FetchUser } from "../utils/supabaseFunctions";
 import { User } from "../domain/user";
 import { BoxBackGroundLayout } from "../components/layouts/BoxBackGroundLayout";
 import { CardWhiteLayout } from "../components/layouts/CardWhiteLayout";
@@ -8,6 +7,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { Box, Button, Heading, IconButton, Text } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router";
+import { FetchUser } from "../services/fetchUser";
 
 export const UserCard = () => {
     const { id } = useParams();
@@ -18,7 +18,7 @@ export const UserCard = () => {
     //データ取得
     const FetchUserData = async (user_id: string) => {
         const userData = await FetchUser(user_id);
-        console.log("取得したユーザーデータ:", userData);
+        //console.log("取得したユーザーデータ:", userData);
 
         if (userData) {
             setUser(userData);
@@ -55,7 +55,7 @@ export const UserCard = () => {
             <Box textAlign="center" justifyContent="center">
                 <CardWhiteLayout>
 
-                    <Heading fontSize={24} fontWeight="bold" textAlign="left" mb={2}>
+                    <Heading fontSize={24} fontWeight="bold" textAlign="left" mb={2} data-testid="testName">
                         {user?.name}
                     </Heading>
 
@@ -64,7 +64,7 @@ export const UserCard = () => {
                             自己紹介
                         </Heading>
 
-                        <Box className="user-description" color="gray.600" textAlign="left" mb={4}>
+                        <Box className="user-description" color="gray.600" textAlign="left" mb={4} data-testid="test-description">
                             <div dangerouslySetInnerHTML={{ __html: user?.description ?? "" }}></div>
                         </Box>
                     </Box>
@@ -72,7 +72,7 @@ export const UserCard = () => {
                         <Heading fontSize={16} fontWeight="bold" textAlign="left" mt={4}>
                             好きな技術
                         </Heading>
-                        <Text fontSize={14} color="gray.600" textAlign="left" mb={4}>
+                        <Text fontSize={14} color="gray.600" textAlign="left" mb={4} data-testid="test-skill">
                             {user?.skill}
                         </Text>
                     </Box>
@@ -87,6 +87,7 @@ export const UserCard = () => {
                             variant="ghost"
                             fontSize={36}
                             margin={4}
+                            data-testid="testQiitaIcon"
                         />
 
                         <IconButton
@@ -97,6 +98,7 @@ export const UserCard = () => {
                             variant="ghost"
                             fontSize={36}
                             margin={4}
+                            data-testid="testGithubIcon"
                         />
                         <IconButton
                             as="a"
@@ -106,6 +108,7 @@ export const UserCard = () => {
                             variant="ghost"
                             fontSize={36}
                             margin={4}
+                            data-testid="testXIcon"
 
                         />
                     </Box>

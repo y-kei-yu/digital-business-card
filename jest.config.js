@@ -8,5 +8,8 @@ export default {
     moduleNameMapper: {
         "\\.(css|less)$": "identity-obj-proxy",
     },
+
+    //jest:ReferenceError: TextEncoder is not definedの対応
+    testEnvironment: 'jest-fixed-jsdom',
 };
 
