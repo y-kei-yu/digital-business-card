@@ -4,6 +4,22 @@ import { UserCard } from "../pages/UserCard";
 import { renderWithRouter } from "../test-utils/renderWithRouter";
 
 
+//supabaseモック
+jest.mock("../utils/supabase.ts", () => ({
+    supabase: {
+        from: jest.fn(() => ({
+            select: jest.fn().mockResolvedValue({ data: [], error: null })
+        }))
+    }
+}));
+
+//モックの実装
+jest.mock("../services/fetchUser.ts", () => {
+    return {
+        FetchUser: () => mockFetchUser()
+    }
+})
+
 //モックデータ作成
 const mockUser = {
     user_id: "testUser",
@@ -30,42 +46,46 @@ jest.mock("../services/fetchUser.ts", () => {
     }
 })
 
+afterEach(() => {
+    jest.clearAllMocks();
+});
+
 
 describe("表示確認", () => {
     test("名前が表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
 
         const name = await screen.findByTestId("testName");
         expect(name).toHaveTextContent("テスト");
     });
 
     test("自己紹介が表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
 
         const description = await screen.findByTestId("test-description");
         expect(description).toHaveTextContent("こんばんは");
     });
 
     test("好きな技術が表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
         const skill = await screen.findByTestId("test-skill");
         expect(skill).toHaveTextContent("Github");
     });
 
     test("Qiitaのアイコンが表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
         const qiitaIcon = await screen.findByTestId("testQiitaIcon");
         expect(qiitaIcon).toBeInTheDocument()
     });
 
     test("GitHubのアイコンが表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
         const githubIcon = await screen.findByTestId("testGithubIcon");
         expect(githubIcon).toBeInTheDocument()
     });
 
     test("Xのアイコンが表示できること", async () => {
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
         const xIcon = await screen.findByTestId("testXIcon");
         expect(xIcon).toBeInTheDocument()
     });
@@ -74,7 +94,7 @@ describe("表示確認", () => {
 describe("画面遷移", () => {
     test("戻るボタンを押すことで\"/\"に画面遷移できること", async () => {
         const user = userEvent.setup();
-        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser" })
+        renderWithRouter(<UserCard />, { route: "/cards/usercard/testUser", path: "/cards/usercard/:id" })
         const backButton = await screen.findByRole("button", { name: "戻る" });
         await user.click(backButton);
         expect(mockedNavigator).toHaveBeenCalledWith('/');
