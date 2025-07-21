@@ -1,12 +1,13 @@
 import { Box, Button, FormControl, FormLabel, Heading, Input, Select, Textarea } from "@chakra-ui/react"
 import { BoxBackGroundLayout } from "../components/layouts/BoxBackGroundLayout"
 import { CardWhiteLayout } from "../components/layouts/CardWhiteLayout"
-import { GetAllSkills, userInsertData } from "../utils/supabaseFunctions"
+import { GetAllSkills } from "../services/getAllSkills"
 import { useEffect, useState } from "react"
 import { Skill } from "../domain/skill"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { User } from "../domain/user"
 import { useNavigate } from "react-router"
+import { userInsertData } from "../services/userInsertData"
 
 export const RegisterCard = () => {
     const { register, handleSubmit, formState: { errors }, control } = useForm<User>();
@@ -31,11 +32,11 @@ export const RegisterCard = () => {
         getAllSkills();
     }, []);
 
-    console.log("取得したスキル:", skill);
+    //console.log("取得したスキル:", skill);
     return (
         <BoxBackGroundLayout>
             <Box>
-                <Heading as="h1" size="lg" mb={4} textAlign="center" justifyContent="center">
+                <Heading as="h1" size="lg" mb={4} textAlign="center" justifyContent="center" data-testid="testTitle">
                     名刺新規登録
                 </Heading>
                 <CardWhiteLayout>
