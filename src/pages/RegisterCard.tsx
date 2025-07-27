@@ -62,7 +62,7 @@ export const RegisterCard = () => {
 
                             />
                             {errors.user_id && (
-                                <span style={{ color: "red" }}>{errors.user_id.message}</span>
+                                <span style={{ color: "red" }} data-testid="wordErrMsg">{errors.user_id.message}</span>
                             )}
                         </FormControl>
                         <FormControl mt={5}>
@@ -75,7 +75,7 @@ export const RegisterCard = () => {
                                 data-testid="testRegisterName"
                             />
                             {errors.name && (
-                                <span style={{ color: "red" }}>{errors.name.message}</span>
+                                <span style={{ color: "red" }} data-testid="nameErrMsg">{errors.name.message}</span>
                             )}
                         </FormControl >
                         <FormControl mt={5}>
@@ -93,7 +93,7 @@ export const RegisterCard = () => {
                                 data-testid="testRegisterDescription"
                             />
                             {errors.description && (
-                                <span style={{ color: "red" }}>{errors.description.message}</span>
+                                <span style={{ color: "red" }} data-testid="descriptionErrMsg">{errors.description.message}</span>
                             )}
                         </FormControl >
                         <FormControl mt={5}>
@@ -113,7 +113,7 @@ export const RegisterCard = () => {
                                 )}
                             />
                             {errors.skill && (
-                                <span style={{ color: "red" }}>{errors.skill.message}</span>
+                                <span style={{ color: "red" }} data-testid="skillErrMsg">{errors.skill.message}</span>
                             )}
                         </FormControl>
                         <FormControl mt={5}>
