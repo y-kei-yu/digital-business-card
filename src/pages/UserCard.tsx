@@ -7,7 +7,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { Box, Button, Heading, IconButton, Text } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router";
-import { FetchUser } from "../services/fetchUser";
+import { fetchUser } from "../services/fetchUser";
 
 export const UserCard = () => {
     const { id } = useParams();
@@ -16,8 +16,8 @@ export const UserCard = () => {
     const [user, setUser] = useState<User | null>(null);
 
     //データ取得
-    const FetchUserData = async (user_id: string) => {
-        const userData = await FetchUser(user_id);
+    const fetchUserData = async (user_id: string) => {
+        const userData = await fetchUser(user_id);
         //console.log("取得したユーザーデータ:", userData);
 
         if (userData) {
@@ -36,7 +36,7 @@ export const UserCard = () => {
     */
     useEffect(() => {
         if (id) {
-            FetchUserData(id);
+            fetchUserData(id);
         }
     }, [id]);
 

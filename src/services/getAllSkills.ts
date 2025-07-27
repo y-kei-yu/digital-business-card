@@ -2,7 +2,7 @@ import { Skill } from "../domain/skill";
 import { supabase } from "../utils/supabase";
 
 //好きな技術のプルダウンを表示させるための関数
-export async function GetAllSkills(): Promise<Skill[]> {
+export async function getAllSkills(): Promise<Skill[]> {
   const { data, error } = await supabase.from("skills").select("*");
 
   if (error) {

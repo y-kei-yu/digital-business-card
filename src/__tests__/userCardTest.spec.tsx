@@ -4,22 +4,6 @@ import { UserCard } from "../pages/UserCard";
 import { renderWithRouter } from "../test-utils/renderWithRouter";
 
 
-//supabaseモック
-jest.mock("../utils/supabase.ts", () => ({
-    supabase: {
-        from: jest.fn(() => ({
-            select: jest.fn().mockResolvedValue({ data: [], error: null })
-        }))
-    }
-}));
-
-//モックの実装
-jest.mock("../services/fetchUser.ts", () => {
-    return {
-        FetchUser: () => mockFetchUser()
-    }
-})
-
 //モックデータ作成
 const mockUser = {
     user_id: "testUser",
@@ -32,6 +16,7 @@ const mockUser = {
 }
 //データ取得モック関数
 const mockFetchUser = jest.fn().mockResolvedValue(mockUser);
+
 //useNavigateをモック化
 const mockedNavigator = jest.fn();
 jest.mock("react-router", () => ({
@@ -42,7 +27,7 @@ jest.mock("react-router", () => ({
 //モックの実装
 jest.mock("../services/fetchUser.ts", () => {
     return {
-        FetchUser: () => mockFetchUser()
+        fetchUser: () => mockFetchUser()
     }
 })
 

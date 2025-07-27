@@ -2,7 +2,7 @@ import { User } from "../domain/user";
 import { supabase } from "../utils/supabase";
 
 //ユーザーデータを取得する関数
-export async function FetchUser(user_id: string): Promise<User> {
+export async function fetchUser(user_id: string): Promise<User> {
   const { data, error } = await supabase
     .from("users")
     .select(
