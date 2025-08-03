@@ -3,7 +3,7 @@ import { BoxBackGroundLayout } from "../components/layouts/BoxBackGroundLayout"
 import { CardWhiteLayout } from "../components/layouts/CardWhiteLayout"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { User } from "../domain/user";
-import { useNavigate } from "react-router";
+import { useNavigate, Link as RouterLink } from "react-router";
 
 export const TopCard = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<User>();
@@ -18,7 +18,7 @@ export const TopCard = () => {
     return (
         <BoxBackGroundLayout>
             <Box justifyContent="center">
-                <Heading as="h1" size="lg" mb={6} textAlign="center">
+                <Heading as="h1" size="lg" mb={6} textAlign="center" data-testid="testTopTitle">
                     デジタル名刺アプリ
                 </Heading>
 
@@ -31,9 +31,10 @@ export const TopCard = () => {
                                 {...register("user_id", {
                                     required: "IDを入力してください。"
                                 })}
+                                data-testid="testTopId"
                             />
                             {errors.user_id && (
-                                <span style={{ color: "red" }}>{errors.user_id.message}</span>
+                                <span style={{ color: "red" }} data-testid="userIdErrMsg">{errors.user_id.message}</span>
                             )}
                         </FormControl >
                         <Button type="submit" colorScheme="teal" width="full" mr={4} mt={4} mb={3} >
@@ -43,7 +44,7 @@ export const TopCard = () => {
                 </CardWhiteLayout>
 
                 <Box textAlign="center" mt={5}>
-                    <Link href="/cards/register">新規登録はこちら</Link>
+                    <Link as={RouterLink} to="/cards/register">新規登録はこちら</Link>
                 </Box>
 
 

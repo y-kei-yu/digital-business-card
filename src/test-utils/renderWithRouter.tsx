@@ -16,8 +16,6 @@ export const renderWithRouter = (
             <MemoryRouter initialEntries={[route]}>
                 <Routes>
                     <Route path={path} element={ui} />
-                    <Route path={path} element={ui} />
-                    <Route path={path} element={ui} />
                 </Routes>
             </MemoryRouter>
         )

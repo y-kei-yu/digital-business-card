@@ -5,7 +5,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { User } from "../domain/user";
 
 
-//Worning対応
+//Supabaseの警告回避とinsert/selectのモック設定
 jest.mock("../utils/supabase.ts", () => ({
     supabase: {
         from: jest.fn(() => ({
@@ -16,7 +16,19 @@ jest.mock("../utils/supabase.ts", () => ({
     }
 }));
 
-//モックの実装
+// モックデータの定義
+const mockSkill = [
+    { skill_id: 1, skill_name: "React" },
+    { skill_id: 2, skill_name: "TypeScript" },
+    { skill_id: 3, skill_name: "Java" },
+]
+
+// モック関数の定義（戻り値を指定）
+const mockGetAllSkills = jest.fn().mockResolvedValue(mockSkill);
+const mockUserInsertData = jest.fn().mockResolvedValue(undefined);
+
+
+// getAllSkills関数とuserInsertData関数をモック関数に差し替え
 jest.mock("../services/getAllSkills.ts", () => {
     return {
         getAllSkills: () => mockGetAllSkills(),
@@ -28,29 +40,15 @@ jest.mock("../services/userInsertData.ts", () => {
     }
 })
 
-//ユーザーイベント定義
-const user = userEvent.setup();
-
-//モックデータ作成
-const mockSkill = [
-    { skill_id: 1, skill_name: "React" },
-    { skill_id: 2, skill_name: "TypeScript" },
-    { skill_id: 3, skill_name: "Java" },
-]
-
-//モック関数
-const mockGetAllSkills = jest.fn().mockResolvedValue(mockSkill);
-const mockUserInsertData = jest.fn().mockResolvedValue(undefined);
-
-
-
-
-//useNavigateをモック化
+// useNavigateをモック関数で差し替え 
 const mockedNavigator = jest.fn();
 jest.mock("react-router", () => ({
     ...jest.requireActual("react-router"),
     useNavigate: () => mockedNavigator,
 }));
+
+// テストで使うユーザー操作イベントを定義
+const user = userEvent.setup();
 
 
 describe("初期表示", () => {
