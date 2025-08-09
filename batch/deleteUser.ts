@@ -1,4 +1,4 @@
-import { supabase } from "../src/utils/supabase";
+import { supabase } from "../src/utils/supabaseNode";
 
 //昨日日付のuser_idを取得
 export async function getYesterdayUserIds(): Promise<string[]> {
