@@ -3,20 +3,28 @@
 
 
 # サービスの説明
-日常の学習を記録できるアプリになります。  
-学習内容と学習時間を記入し、登録ボタンを押すことで学習記録を登録でき、一覧に表示することができます。
-編集ボタンで学習内容、学習時間を変更できます。
-削除ボタンで学習記録のデータを削除できます。  
-学習した時間の合計時間も表示することができます。
+このサービスでは、名刺情報の登録・確認ができます。
+「新規登録はこちら」のリンクから、新しい名刺情報を登録できます。
+<br/>
+登録した名刺では、以下の情報を確認できます。<br/>
+	•	好きな英単語 <br/>
+	•	名前 <br/>
+	•	自己紹介（HTMLタグ使用可） <br/>
+	•	好きな技術<br/>
+	•	GitHubアカウント<br/>
+	•	Qiitaアカウント<br/>
+	•	X（Twitter）アカウント<br/>
+<br/>
+また、毎朝6時に、前日に作成された名刺情報を削除するバッチ処理が自動で実行されます。
 
 # 使用技術  
-・TypeScript
-・Vite
-・React
-・react-hook-form
-・ChakraUI
-・Supabase  
-・Firebase  
+・TypeScript <br/>
+・Vite<br/>
+・React<br/>
+・react-hook-form <br/>
+・ChakraUI <br/>
+・Supabase  <br/>
+・Firebase  <br/>
 ・Jest  
 ・React Testing Library  
 
