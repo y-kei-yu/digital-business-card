@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# サービス名
+### デジタル名刺アプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# サービスの説明
+日常の学習を記録できるアプリになります。  
+学習内容と学習時間を記入し、登録ボタンを押すことで学習記録を登録でき、一覧に表示することができます。
+編集ボタンで学習内容、学習時間を変更できます。
+削除ボタンで学習記録のデータを削除できます。  
+学習した時間の合計時間も表示することができます。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 使用技術  
+・TypeScript
+・Vite
+・React
+・react-hook-form
+・ChakraUI
+・Supabase  
+・Firebase  
+・Jest  
+・React Testing Library  
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# 起動の仕方
+### 1.プロジェクトをクローンする  
+```
+$ git clone https://github.com/y-kei-yu/digital-business-card.git
+$ cd digital-business-card
+```
+### 2.パッケージをインストールする  
+```
+npm i
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3.supabaseのアカウントを作成する。  
+### 4.新規プロジェクトを作成する(プロジェクト名はdigital-business-card、データベースパスワードは適当)  
+### 5. Table Editorで以下のテーブルを作成する
+usersテーブル
+| colomn | type | option |
+| :--- | :--- | :--- |
+| user_id | varchar | non null  |
+| name | varchar | non null |
+| description | text | non null |
+| github_id | varchar | null |
+| qiita_id | varchar | null |
+| x_id | varchar | null |
+| create_at | timestamotz | null |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+user_skillテーブル
+| colomn | type | option |
+| :--- | :--- | :--- |
+| id | int8 | non null  |
+| user_id | varchar | non null |
+| skill_id | varchar | non null |
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+skillsテーブル
+| colomn | type | option |
+| :--- | :--- | :--- |
+| id | int8 | non null  |
+| name| varchar | non null |
+
+
+### 6.`.env`ファイルを作成する
 ```
+touch .env
+```
+### 7.`.env`ファイルに以下の内容を設定する  
+```
+VITE_SUPABASE_URL="SupabaseのProject URL"
+VITE_SUPABASE_ANON_KEY="SupabaseのProject API Keys"
+```  
+
+### 8.以下のコマンドを実行する
+```
+npm run dev
+```
+
+
+
+
+
